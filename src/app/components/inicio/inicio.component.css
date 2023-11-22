@@ -1,0 +1,5 @@
+.img img:hover{
+  cursor:pointer;
+  border: solid 2px blue;
+  transform:scale(102%);
+}

@@ -1,0 +1,33 @@
+<div class="container" *ngIf="Comic">
+    <div class="card mb-4">
+        <div class="card-img-top">
+            <img *ngIf="Comic.images.length > 0" class="img-fluid" [src]="Comic.images[0]?.path + '.' + Comic.images[0]?.extension" alt="{{Comic.title}} Image">
+            <img *ngIf="Comic.images.length === 0" class="img-fluid" src="assets/Images/image-not-found.jpg" alt="Image Not Found">
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>{{Comic.title}}</h3>
+        </div>
+        <div class="card-body">
+            <p>Series: {{Comic.series.name}}</p>
+            <p>Descripción: {{Comic.variantDescription}}</p>
+            <p>Personajes:</p>
+            <ul>
+                <li *ngFor="let creators of Comic.characters.items">
+                    {{creators.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Personajes</h3>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li *ngFor="let character of Comic.characters.items">{{character.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
