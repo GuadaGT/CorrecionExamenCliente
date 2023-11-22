@@ -1,37 +1,49 @@
-<div class="container" *ngIf="Comic">
-    <div class="card mb-4">
-        <div class="card-img-top" *ngFor="let comic of Comic">
-          <img [src]="comic.images[0].path?comic.images[0].path+'/portait_uncanny.jpg/':'assets/Images/image-not-found.jpg'">
+<div class="row justify-content-center my-5">
+  <!-- Contenedor para la información detallada de un cómic -->
+  <div class="container" *ngIf="Comic">
+    <!-- Fila con tres columnas para mostrar información detallada del cómic -->
+    <div class="row">
+      <!-- Columna 1: Imagen del cómic vinculada a la ruta general de cómics -->
+      <div class="col-md-4 mb-4">
+        <div class="card img" [routerLink]="'/marvel/'">
+          <!-- Div adicional con la clase "img" -->
+          <div class="card-img-top text-center">
+            <!-- Imagen del cómic con manejo de imagen predeterminada si no hay imagen disponible -->
+            <img [src]="Comic.images[0]?.path ? Comic.images[0].path + '/portrait_uncanny.jpg' : 'assets/Images/image-not-found.jpg'" class="w-100">
+          </div>
         </div>
-    </div>
-    <div class="card mb-4">
-        <div class="card-header" *ngFor="let comic of Comic">
-            <h3>{{comic.title}}</h3>
+      </div>
+      <!-- Columna 2: Información básica del cómic -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-header text-center bg-primary">
+            <!-- Encabezado de la card con el título del cómic -->
+            <h3>{{ Comic.title }}</h3>
+          </div>
+          <div class="card-body">
+            <!-- Información básica del cómic -->
+            <p><strong>Series:</strong> {{ Comic.series.name }}</p>
+            <p><strong>Historias disponibles:</strong> {{ Comic.stories.available }}</p>
+            <p><strong>Personajes disponibles: </strong>{{Comic.characters.available}}</p>
+          </div>
         </div>
-        <div class="card-body" *ngFor="let comic of Comic">
-            <p>Series: {{comic.series.name}}</p>
-            <p>Descripción: {{comic.variantDescription}}</p>
-            <p>Personajes:</p>
+      </div>
+      <!-- Columna 3: Colecciones relacionadas con el cómic -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <!-- Encabezado de la card con "Colecciones" -->
+            <h3>Colecciones</h3>
+          </div>
+          <div class="card-body">
+            <!-- Lista de colecciones relacionadas con el cómic -->
             <ul>
-                <li *ngFor="let creators of comic.characters.items">
-                    {{creators.name }}
-                </li>
+              <!-- Bucle para cada variante de la colección -->
+              <li *ngFor="let variantes of Comic.variants">{{ variantes.name }}</li>
             </ul>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="card mb-4">
-        <div class="card-header">
-            <h3>Personajes</h3>
-        </div>
-        <div class="card-body" *ngFor="let comic of Comic">
-            <ul>
-              TEXT PRIMARY
-              --> DESCRIPCION <--
-              CON INFO
-                <li *ngFor="let character of comic.characters.items">{{character.name}}</li>
-            </ul>
-        </div>
-    </div>
-
-  CARD DATOS QUE TENÍA
+  </div>
 </div>
