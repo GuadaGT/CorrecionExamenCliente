@@ -16,14 +16,6 @@ export interface MarvelAPIInterfaces {
   results: Marvel[]
 }
 
-export interface MarvelOne{
-  offset: number
-  limit: number
-  total: number
-  count: number
-  results: Marvel
-}
-
 export interface Marvel {
   id: number
   digitalId: number

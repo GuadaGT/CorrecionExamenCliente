@@ -9,7 +9,7 @@ import {MarvelOneService} from "../../services/marvel-one.service";
   styleUrls: ['./marvel-one.component.css']
 })
 export class MarvelOneComponent implements OnInit{
-  Comic!: Marvel;
+  Comic: Marvel[] = [];
   constructor(
       private ar: ActivatedRoute,
       private marveloneService: MarvelOneService) {}
@@ -24,7 +24,7 @@ export class MarvelOneComponent implements OnInit{
     this.marveloneService.getComic(id).subscribe(
         {
           next:value => {
-            this.Comic = value.results;
+            this.Comic = value.data.results;
           },
           error:(err)=>{
             console.error(err);

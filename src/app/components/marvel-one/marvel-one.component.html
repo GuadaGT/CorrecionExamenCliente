@@ -1,20 +1,19 @@
 <div class="container" *ngIf="Comic">
     <div class="card mb-4">
-        <div class="card-img-top">
-            <img *ngIf="Comic.images.length > 0" class="img-fluid" [src]="Comic.images[0]?.path + '.' + Comic.images[0]?.extension" alt="{{Comic.title}} Image">
-            <img *ngIf="Comic.images.length === 0" class="img-fluid" src="assets/Images/image-not-found.jpg" alt="Image Not Found">
+        <div class="card-img-top" *ngFor="let comic of Comic">
+          <img [src]="comic.images[0].path?comic.images[0].path+'/portait_uncanny.jpg/':'assets/Images/image-not-found.jpg'">
         </div>
     </div>
     <div class="card mb-4">
-        <div class="card-header">
-            <h3>{{Comic.title}}</h3>
+        <div class="card-header" *ngFor="let comic of Comic">
+            <h3>{{comic.title}}</h3>
         </div>
-        <div class="card-body">
-            <p>Series: {{Comic.series.name}}</p>
-            <p>Descripción: {{Comic.variantDescription}}</p>
+        <div class="card-body" *ngFor="let comic of Comic">
+            <p>Series: {{comic.series.name}}</p>
+            <p>Descripción: {{comic.variantDescription}}</p>
             <p>Personajes:</p>
             <ul>
-                <li *ngFor="let creators of Comic.characters.items">
+                <li *ngFor="let creators of comic.characters.items">
                     {{creators.name }}
                 </li>
             </ul>
@@ -24,9 +23,9 @@
         <div class="card-header">
             <h3>Personajes</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body" *ngFor="let comic of Comic">
             <ul>
-                <li *ngFor="let character of Comic.characters.items">{{character.name}}</li>
+                <li *ngFor="let character of comic.characters.items">{{character.name}}</li>
             </ul>
         </div>
     </div>
